@@ -14,3 +14,4 @@ C:\Users\pavel\source\repos\WinFormsRender3D\obj\Debug\net8.0-windows\refint\Win
 C:\Users\pavel\source\repos\WinFormsRender3D\obj\Debug\net8.0-windows\WinFormsRender3D.pdb
 C:\Users\pavel\source\repos\WinFormsRender3D\obj\Debug\net8.0-windows\WinFormsRender3D.genruntimeconfig.cache
 C:\Users\pavel\source\repos\WinFormsRender3D\obj\Debug\net8.0-windows\ref\WinFormsRender3D.dll
+C:\Users\pavel\source\repos\WinFormsRender3D\obj\Debug\net8.0-windows\WinFormsRender3D.sourcelink.json

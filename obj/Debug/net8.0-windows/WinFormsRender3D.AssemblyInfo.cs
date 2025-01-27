@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinFormsRender3D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec4ec08a8407e8cac54eabe7f251768ef2ef9a31")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinFormsRender3D")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinFormsRender3D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

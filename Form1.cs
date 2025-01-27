@@ -9,7 +9,6 @@ namespace WinFormsRender3D
     public partial class Form1 : Form
     {
         private Render LogicRender = new();
-        private Vector3 pos = new(0, 0, 0);
 
         List<Face> Test = [
             new( new(1,1,1), new(2,1,1), new(1,2,1) ),
@@ -36,6 +35,32 @@ namespace WinFormsRender3D
 
             new( new(1,1,1), new(1,1,2), new(2,1,2) ),];
 
+        //List<Face> Test = [
+        //        new(new(0.1f, 0.1f, 0.1f), new(0.2f, 0.1f, 0.1f), new(0.1f, 0.2f, 0.1f)),
+
+        //        new(new(0.2f, 0.1f, 0.1f), new(0.1f, 0.2f, 0.1f), new(0.2f, 0.2f, 0.1f)),
+
+        //        new(new(0.2f, 0.1f, 0.2f), new(0.2f, 0.1f, 0.2f), new(0.2f, 0.2f, 0.1f)),
+
+        //        new(new(0.2f, 0.1f, 0.2f), new(0.2f, 0.2f, 0.2f), new(0.2f, 0.2f, 0.1f)),
+
+        //        new(new(0.2f, 0.1f, 0.2f), new(0.1f, 0.1f, 0.2f), new(0.2f, 0.2f, 0.2f)),
+
+        //        new(new(0.1f, 0.1f, 0.2f), new(0.2f, 0.2f, 0.2f), new(0.1f, 0.2f, 0.2f)),
+
+        //        new(new(0.1f, 0.1f, 0.2f), new(0.1f, 0.1f, 0.1f), new(0.1f, 0.2f, 0.1f)),
+
+        //        new(new(0.1f, 0.1f, 0.2f), new(0.1f, 0.2f, 0.2f), new(0.1f, 0.2f, 0.1f)),
+
+        //        new(new(0.1f, 0.2f, 0.2f), new(0.1f, 0.2f, 0.1f), new(0.2f, 0.2f, 0.2f)),
+
+        //        new(new(0.2f, 0.2f, 0.2f), new(0.2f, 0.2f, 0.1f), new(0.1f, 0.2f, 0.1f)),
+
+        //        new(new(0.2f, 0.1f, 0.2f), new(0.2f, 0.1f, 0.1f), new(0.1f, 0.1f, 0.1f)),
+
+        //        new(new(0.1f, 0.1f, 0.1f), new(0.1f, 0.1f, 0.2f), new(0.2f, 0.1f, 0.2f))
+        //    ];
+
         public Form1()
         {
             InitializeComponent();
@@ -44,11 +69,15 @@ namespace WinFormsRender3D
             timer.Tick += Update;
             timer.Start();
 
-            LogicRender.CreateEntity(new(pos, new(0,0,0), new(100,100,100), false, Color.Black, Test));
+            LogicRender.WindowSize = this.Size;
+
+            LogicRender.CreateEntity(new(new(0, 0, 0), new(0, 0, 0), new(100, 10, 1), false, Color.Black, Test));
+            LogicRender.CreateEntity(new(new(0, 100, 0), new(0, 0, 0), new(100, 100, 200), true, Color.Black, Test));
         }
 
-        private void Update(object? sender, EventArgs e)
+        private void Update(object sender, EventArgs e)
         {
+            LogicRender.WindowSize = this.Size;
             Invalidate();
         }
 
@@ -62,21 +91,57 @@ namespace WinFormsRender3D
 
         private void KeyDownCheck(object sender, KeyEventArgs e)
         {
+            var CamPos = LogicRender.UserCam.Position;
+            var CamYaw = LogicRender.UserCam.yaw;
+            var CamPitch = LogicRender.UserCam.pitch;
+
             switch (e.KeyCode)
             {
+                //case Keys.W:
+                //    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posY, -1.25f);
+                //    break;
+                //case Keys.S:
+                //    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posY, 1.25f);
+                //    break;
+                //case Keys.D:
+                //    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posX, 1.25f);
+                //    break;
+                //case Keys.A:
+                //    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posX, -1.25f);
+                //    break;
                 case Keys.W:
-                    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posY, -0.05f);
+                    CamPos.Z -= 0.25f;
                     break;
+
                 case Keys.S:
-                    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posY, 0.05f);
+                    CamPos.Z += 0.25f;
                     break;
+
                 case Keys.D:
-                    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posX, 0.05f);
+                    CamPos.X -= 1.25f;
                     break;
+
                 case Keys.A:
-                    LogicRender.ChangingParameters(parametrsEntity.position, posVector.posX, -0.05f);
+                    CamPos.X += 1.25f;
                     break;
+
+                case Keys.Space:
+                    CamPos.Y += 1.25f;
+                    break;
+
+                case Keys.ShiftKey:
+                    CamPos.Y -= 1.25f;
+                    break;
+
+                case Keys.Q:
+                    CamYaw += 1.25f;
+                    break;
+                case Keys.E:
+                    CamYaw -= 1.25f;
+                    break;
+
             }
+            LogicRender.UserCam.Position = CamPos;
         }
     }
 }
